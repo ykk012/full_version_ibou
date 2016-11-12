@@ -1,0 +1,32 @@
+<div class="container col-md-12" ng-controller="makeHomeCtrl">
+    <div class="row">
+            <div class="panel">
+                <div class="panel-body">
+                <a href="#createQuestionnaire" class="btn btn-lg btn-block btn-primary"><h4>アンケートスタート</h4></a>
+                </div>
+            </div>
+        <div class="animate-repeat" ng-repeat="item in questionnaires | filter:search_word">
+            <div class="panel panel-default main_thumbnail" >
+                <div class="row">
+                    <div class="col-md-2"></div>
+                    <div class="col-md-10">
+                        <table class="col-md-10 table">
+                            <tbody>
+                            <tr> <h3>{{item.s_subject}}</h3></tr>
+                            <tr> <td>説明</td>  <td>{{item.s_explain}}</td> </tr>
+                            <tr> <td>期間</td> <td>{{item.s_date}}</td></tr>
+                            </tbody>
+                        </table>
+                        <div class="text-right">
+                            <button class="btn btn-primary" ng-click="goShare(item)">SNS共有</button>
+                            <button class="btn btn-primary" ng-click="questionnaire_result(item)">結果</button>
+                            <button class="btn btn-primary" ng-click="questionnaire_modify(item)">修整</button>
+                            <button class="btn btn-danger" ng-click="questionnaire_delete(item)">削除</button>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+         
+    </div>
+</div>

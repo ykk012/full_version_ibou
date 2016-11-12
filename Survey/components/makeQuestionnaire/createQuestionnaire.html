@@ -1,0 +1,44 @@
+<div ng-controller="createQuestionnaireCtrl ">
+    <div class="col-xs-12 panel panel-default">
+        <div>
+            <form class="form-horizontal" name="createQuestionnaireForm">
+                <div class="form-group">
+                    <br><br>
+                    <label for="questionnaire_s_subject" class="col-sm-2 control-label">タイトル入力</label>
+                    <div class="col-sm-6">
+                        <input type="text" class="form-control" id="questionnaire_s_subject" ng-model="questionnaire.s_subject" required>
+                    </div>
+                </div>
+                <div class="form-group">
+                    <label for="respon_start_date" class="col-sm-2 control-label">日付選択</label>
+                    <div class="col-sm-6">
+                        <input type="date" class="form-control" id="respon_start_date" ng-model="questionnaire.s_date" required>
+                    </div>
+                </div>
+                <div class="form-group">
+                    <label for="questionnaire_explain" class="col-sm-2 control-label">アンケート情報</label>
+                    <div class="col-sm-6">
+                        <input type="textarea" class="form-control" id="questionnaire_explain" ng-model="questionnaire.s_explain" required>
+                    </div>
+                </div>
+
+                <div class="form-group">
+                    <div class="col-sm-offset-2 col-sm-10 text-right">
+                        <button class="btn btn-primary" ng-click="createNewQuestionnaire(questionnaire)" ng-disabled="createQuestionnaireForm.$invalid">次へ</button>
+                    </div>
+                </div>
+
+            </form>
+        </div>
+
+    </div>
+    <!-- 이부분 없애도될듯-->
+    <div class="col-md-12">
+        <div class="panel">
+            <div class="panel-body">
+                <a href="#makeHome" class="btn  btn-block btn-primary"><h4>アンケートリスト</h4></a>
+            </div>
+        </div>
+    </div>
+
+</div>

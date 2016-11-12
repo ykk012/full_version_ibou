@@ -1,0 +1,45 @@
+<!--
+    내용 : 날짜/시간 정보
+    설정div
+       - 문제/보기의 내용을 설정
+       - logic 여부 설정
+       - 중요표시 설정
+       - 확인 : 보기div로 전환 텍스트 형
+-->
+<div id="make{{item.num}}" ng-show="item.makeShow">
+    <div class="well component">
+        <h4>{{item.title}} </h4>
+        <!--
+            문제 내용 입력 current_question.question_content
+        -->
+        <input class="form-control" ng-model="item.question_content" placeholder="入力">
+
+        <div class="text-left">
+            <button class="btn btn-success btn-block" ng-click="endSetting()">確認</button>
+        </div>
+    </div>
+</div>
+<!--
+    보기div
+       - 마우스 over시 수정/삭제/복사 버튼 표시
+       - 수정 : 설정div로 전환
+       - 삭제 : 현제 문제 삭제
+       - 복사 : 설문지 하단에 내용 복사
+-->
+<div id="view{{item.num}}" class="well component" ng-mouseleave="eventHandler($event)" ng-mouseenter="eventHandler($event)"
+     data-drag="true"
+     ng-show="item.viewShow">
+
+    <h3> {{item.num + 1}}.&nbsp;{{item.question_content}}
+        <span class="pull-right label" ng-show="menuShow">
+            <button class="btn btn-default" ng-click="endSetting()">修正</button>
+            <button class="btn btn-default" ng-click="copyQuestion(item.index)" >コピー</button>
+            <button class="btn btn-danger" ng-click="removeQuestion(item.index)"> 削除</button>
+        </span>
+    </h3>
+    <div class="form-inline">
+        <div class="form-group">
+            <input type="date" class="form-control" />
+        </div>
+    </div>
+</div>

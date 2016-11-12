@@ -1,0 +1,16 @@
+<div id="view{{item.num}}" class="well component">
+    <h3> {{item.num + 1}}.&nbsp;{{item.question_content}} </h3>
+    <div class="row">
+        <div class="col-sm-6 col-md-6" ng-repeat="exam in item.example track by $index">
+            <div class="thumbnail">
+                <img ng-src="{{exam.image}}" style="height:250px">
+                <div class="caption">
+                    <label>
+                        <input  ng-model="item.answer" type="radio" name="optionsRadios" id="optionsRadios{{$index}}" value="{{$index}}">
+                        {{exam.content}}
+                    </label>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>

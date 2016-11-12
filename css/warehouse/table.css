@@ -1,0 +1,7 @@
+
+.columns-selected{
+    border: 1px solid gray;
+    background-color:gray;
+    margin : 2px;
+    z-index:0;
+}

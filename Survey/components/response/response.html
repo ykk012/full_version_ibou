@@ -1,0 +1,19 @@
+<div class="container" ng-controller="responseCtrl">
+    <div class="panel panel-default" style="padding: 10px">
+        <div class="text-center">
+            <h1>{{questionnaire.s_subject}}</h1>
+        </div>
+         <div class="text-center">
+          <h3>{{questionnaire.s_explain}}</h3>
+        </div>
+          
+        <div ng-repeat="item in questionnaire.preview"
+             class="well"
+             response-template="item">
+        </div>
+        <div class="panel-footer">
+            <button class="btn btn-primary" ng-click="sendData()">アンケート完了</button>
+        </div>
+    </div>
+</div>
+

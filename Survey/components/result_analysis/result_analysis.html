@@ -1,0 +1,238 @@
+<div class="col-md-12 result-main" ng-controller="result_analysisCtrl">
+    <div class="col-md-12">
+        <div class="panel shadow-input">
+            <div class="panel-body">
+                <div class="text-left col-md-9"><h1>{{surveyinfo.surveyInfo.surveyname}}</h1></div>
+                <div class="col-md-3 text-right">
+                    <h1>
+                        <div class="btn-group" >
+
+                            <a href="#result" class="btn btn-default btn-lg">全体結果を見る</a>
+                            <a href="#result_analysis" class="btn btn-success btn-lg">基準別の比較分析</a>
+                        </div>
+                    </h1>
+                </div>
+
+            </div>
+        </div>
+    </div>
+    <div class="col-md-12">
+        <div class="text-left">
+        <p>基準別の比較分析</p>
+        </div>
+        <div class="panel shadow-input">
+            <div class="panel-body">
+        <div class="col-md-2 panel" >
+            <div class="panel-heading col-md-12">
+                <div class="col-md-6">
+                    <button class="btn btn-default btn-lg btn-block" ng-click="selectedBtn='QList'">リスト</button>
+                </div>
+                <div class="col-md-6">
+                    <button class="btn btn-default btn-lg btn-block" ng-click="selectedBtn='profile'">プロフィル</button>
+                </div>
+
+            </div>
+            <div ng-switch="selectedBtn">
+                <div class="panel-body result-main" ng-switch-when="QList">
+                    <ul style="list-style-type: none;"
+                        dnd-list="question_data"
+                        dnd-allowd-types="['question']">
+                        <li ng-repeat="item in question_data"
+                            dnd-draggable="item"
+                            dnd-type="'question'"
+                            dnd-effect-allowed="move"
+                            dnd-moved="question_data.splice($index, 1)"
+                            class="well">
+                            <h3>{{item.question_content}}</h3>
+                        </li>
+                    </ul>
+                </div>
+                <div class="panel-body result-main" ng-switch-when="profile">
+                    <ul style="list-style-type: none;"
+                        dnd-list="profile_data"
+                        dnd-allowed-types="['profile']">
+                        <li ng-repeat="item in profile_data"
+                            dnd-draggable="item"
+                            dnd-type="'profile'"
+                            dnd-effect-allowed="move"
+                            dnd-moved="profile_data.splice($index, 1)"
+                            class="well">
+                            <h3>{{item.con}}</h3>
+                        </li>
+                    </ul>
+                </div>
+            </div>
+        </div>
+        <div class="col-md-10 panel">
+            <div class="advancedDemo row">
+                    <div class="col-md-12">
+                        <div class="col-md-2 panel">
+                            &nbsp;
+                        </div>
+                        <div class="col-md-10 panel dropzone box box-yellow drops shadow-input" style="padding: 10px; ">
+                            <div class="container-element box box-blue">
+                            基準エリア
+                            <ul class="profile_box"
+                                dnd-list="profile_box"
+                                dnd-allowed-types="['profile']"
+                                dnd-horizontal-list="true"
+                                    >
+                                 <!--드래그 기능 없어도 됨-->
+                                <li ng-repeat ="items in profile_box">
+                                        <ul dnd-list            = "items.profiles"
+                                            dnd-allowed-types   = "['profile']"
+                                            dnd-disable-if      = "items.profiles.length >= 2"
+                                            class               = "itemlist">
+
+                                            <li ng-repeat           ="item in items.profiles"
+                                                dnd-draggable       ="item"
+                                                dnd-type            ="'profile'"
+                                                dnd-effect-allowed  ="move"
+                                                dnd-moved           ="items.profiles.splice($index, 1)"
+                                                ng-style            ="{ 'height': 50 / items.profiles.length + 'px'}"
+                                                class               ="profile_item"
+                                                >
+                                                <!--<dropdown-multiselect subject="item.name" pre-selected="member.roles" model="selected_items" options="item.info">
+                                                </dropdown-multiselect>-->
+                                                <div>
+                                                    <div ng-dropdown-multiselect="" subject="'none'" profile="item.name" content="item.name" options="item.info" selected-model="selected_items"></div>
+                                                </div>
+
+                                            </li>
+                                        </ul>
+                                </li>
+                            </ul>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="col-md-12 panel">
+                        <div class="col-md-2 panel dropzone box box-yellow " >
+                            <div class="col-md-12 drops shadow-input" style="padding: 10px">
+                            問題エリア
+                            <ul dnd-list             ="question_box"
+                                dnd-allowed-types    ="['question']">
+                                <li ng-repeat           ="item in question_box"
+                                    dnd-draggable       ="item"
+                                    dnd-type            ="'question'"
+                                    dnd-effect-allowed  ="move"
+                                    dnd-moved           ="question_box.splice($index, 1)">
+                                    <div>
+                                        <div ng-dropdown-multiselect="" subject="item.index" content="item.question_content" options="item.example" selected-model="selected_question"></div>
+                                    </div>
+                                </li>
+                            </ul>
+                            </div>
+                        </div>
+
+                        <div class="col-md-10 panel drops shadow-input" style="{padding: 17px}">
+                            <table border="1" class="table data-table">
+                                <!--첫번째 기준 출력-->
+                                <tr>
+                                    <td rowspan="2">&nbsp;</td>
+                                    <td rowspan="2"> 全体</td>
+                                    <td ng-repeat="item in profile_box" class="blue-td">
+                                        <div class="inner-table line full-height">
+                                        {{item.profiles[0].name}}
+                                        </div>
+                                    </td>
+                                </tr>
+                                <!--기준안의 구별자 출력-->
+                                <tr vertilize-container >
+                                    <td ng-repeat="item in profile_box">
+                                            <div class="inner-table full-height row" ng-repeat="info in filtered=(item.profiles[0].info | filter:optionFilter)" ng-style="{'width': 100 / filtered.length + '%'}">
+                                                <div ng-if="item.profiles.length <= 1" vertilize >
+                                                    {{info.name}}
+                                                </div>
+                                                <!--두번째 기준이 있다면 출력-->
+                                                <div>
+                                                    <div vertilize-container ng-if="item.profiles.length > 1" >
+                                                        <div>
+                                                            {{info.name}}
+                                                        </div>
+                                                        <div class="inner-table line blue-td" vertilize>
+                                                            {{item.profiles[1].name}}
+                                                        </div>
+                                                        <div vertilize-container class="inner-table full-height" ng-repeat="info in filtered1 = ( item.profiles[1].info | filter:optionFilter)" ng-style="{'width': 100 / filtered1.length + '%' }">
+                                                            <div vertilize>
+                                                            {{info.name}}
+                                                            </div>
+                                                        </div>
+                                                    </div>
+                                                </div>
+                                            </div>
+                                    </td>
+                                </tr>
+                                <!--응답자 수 출력-->
+                                <tr vertilize-container>
+                                    <td class="gray-td">応答者数</td>
+                                    <td class="gray-td" style="width: 48px;">{{all_response()}}</td>
+                                    <td class="gray-td" ng-repeat="item in profile_box">
+                                        <div class="inner-table line full-height">
+                                            <div class="inner-table full-height" ng-repeat="info in filtered=(item.profiles[0].info | filter:optionFilter)" ng-style="{'width': 100 / filtered.length + '%'}">
+                                                <div ng-if="item.profiles.length <= 1">
+                                                    {{all_count(item, item.profiles[0], info)}}
+                                                </div>
+                                                <!--두번째 기준이 있다면 출력 -->
+                                                <div ng-if="item.profiles.length > 1">
+                                                    <div class="inner-table full-height" ng-repeat="info1 in filtered1 = ( item.profiles[1].info | filter:optionFilter)" ng-style="{'width': 100 / filtered1.length + '%' }">
+                                                        {{multiple_all_count(item, item.profiles[0], item.profiles[1],info, info1)}}
+                                                    </div>
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </td>
+                                </tr>
+                                <!-- 문제출력 -->
+                                <tr ng-repeat="item in question_box">
+                                    <td>
+                                        <div class="inner-table line">
+                                            <div class="inner-table" ng-style="{'width' : '50%', 'height': (item.example|filter:questionFilter).length * 40 + 'px'}">
+                                                {{item.question_content}}
+                                            </div>
+                                            <div class="inner-table" ng-style="{'width' : '50%', 'height':(item.example|filter:questionFilter).length * 40 + 'px'}" style="{width : 50%}">
+                                                <div class="inner-table line" ng-style="{'height': '40px' }" ng-repeat="exam in item.example | filter:questionFilter">
+                                                    {{exam.content}}
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </td>
+                                    <!--전체 응답자수 출력-->
+                                    <td>
+                                        <div class="inner-table line" ng-style="{ 'height': (item.example|filter:questionFilter).length * 40 + 'px'}" style="{width : 50%}">
+                                            <div class="inner-table line" ng-style="{'height': '40px' }" ng-repeat="exam in item.example  | filter:questionFilter">
+                                                {{exam.result.length}}
+                                            </div>
+                                        </div>
+                                    </td>
+                                    <td ng-repeat="profile in profile_box">
+                                        <div class="inner-noline line" ng-style="{ 'height': (item.example|filter:questionFilter).length * 40 + 'px'}" style="{width : 50%}">
+                                            <div class="inner-table line" ng-style="{'height': '40px' }" ng-repeat="exam in item.example | filter:questionFilter">
+                                                <div class="inner-table full-height" ng-repeat="info in filtered=(profile.profiles[0].info | filter:optionFilter)" ng-style="{'width': 100 / filtered.length + '%' }">
+                                                    <div ng-if="profile.profiles.length <= 1">
+                                                        {{info.data = calc(item, exam, profile.profiles[0], info)}}
+                                                    </div>
+                                                    <!--두번째 기준이 있다면 출력-->
+                                                    <div ng-if="profile.profiles.length > 1">
+                                                        <div class="inner-table full-height" ng-repeat="info2 in filtered1 = ( profile.profiles[1].info | filter:optionFilter)" ng-style="{'width': 100 / filtered1.length + '%', 'height' : '40px' }">
+                                                            {{multiple_calc(item, exam, profile.profiles[0], profile.profiles[1], info, info2)}}
+                                                        </div>
+                                                    </div>
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </td>
+                                </tr>
+                            </table>
+
+
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+            </div>
+            </div>
+    </div>
+</div>
+

@@ -1,0 +1,107 @@
+
+  .node {
+    cursor: pointer;
+  }
+
+  .overlay{
+      background-color:#EEE;
+  }
+
+  .node circle {
+    fill: #fff;
+    stroke: steelblue;
+    stroke-width: 1.5px;
+  }
+
+  .node text {
+    font-size:10px;
+    font-family:sans-serif;
+    display: block;
+  }
+  
+  rect {
+      fill: rgba(226, 133, 219, 0.2);
+  }
+
+  .confirmed{
+      fill: rgba(113,247,142,0.2);
+  }
+
+  .choosed{
+      fill: rgba(255,255,0,0.2);
+  }
+
+  .root{
+      fill: rgba(113,237,247,0.2);
+  }
+
+  .link {
+    fill: none;
+    stroke: #ccc;
+    stroke-width: 1.5px;
+  }
+
+  .templink {
+    fill: none;
+    stroke: red;
+    stroke-width: 3px;
+  }
+
+  .ghostCircle.show{
+      display:block;
+  }
+
+  .ghostCircle, .activeDrag .ghostCircle{
+       display: none;
+  }
+
+
+  #input-field{
+    padding:10px;
+  }
+    .contents{
+        width:200px;
+        height: 150px;
+        border: 1px solid #000;
+        margin: 8px;
+        padding: 24px;
+        float: left;
+    }
+    
+    .wbCreator{
+      clear:both;
+    }
+    
+
+  #switch-bar{
+    float: right;
+    padding: 10px;
+  }
+  
+  #top-menu-bar{
+    padding:20px;
+  }
+  
+  .navbar {
+      padding-top: 15px;
+      padding-bottom: 15px;
+      border: 0;
+      border-radius: 0;
+      margin-bottom: 0;
+      font-size: 12px;
+      letter-spacing: 5px;
+  }
+  
+  .navbar-nav  li a:hover {
+      color: #1abc9c !important;
+  }
+  
+  #tree-container{
+    padding:10px;
+  }
+  #logTextArea{
+    height: 80vh;
+  }
+  #viwe-container-row{
+    height: 46vh;
+  }

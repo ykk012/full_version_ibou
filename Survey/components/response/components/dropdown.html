@@ -1,0 +1,11 @@
+<div id="view{{item.num}}"  class="well component">
+    <h3> {{item.num + 1}}.&nbsp;{{item.question_content}} </h3>
+    <div class="form-group">
+        <select class="form-control" ng-model="item.answer">
+            <option ng-repeat="exam in item.example track by $index"
+                    value="{{$index}}">
+                {{exam.content}}
+            </option>
+        </select>
+    </div>
+</div>

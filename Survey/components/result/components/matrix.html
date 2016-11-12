@@ -1,0 +1,23 @@
+<div id="view{{item.num}}" class="well component" >
+    <h3> {{item.num + 1}}.&nbsp;{{item.question_content}}   </h3>
+    <div class="form-group">
+        <table class="table table-striped">
+            <thead>
+                <tr>
+                    <th>&nbsp;</th>
+                    <th ng-repeat="exam in item.colum">{{exam.content}}</th>
+                </tr>
+            </thead>
+            <tbody>
+                <tr ng-repeat="exam in item.row track by $index">
+                    <td>{{exam.content}}</td>
+                    <td ng-repeat="colum in item.colum">
+                        <label for="">
+                            <input type="radio" name="optionsRadios{{exam.exam_index}}" ng-model="exam.answer" value="{{$index}}">
+                        </label>
+                    </td>
+                </tr>
+            </tbody>
+        </table>
+    </div>
+</div>

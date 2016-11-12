@@ -1,0 +1,39 @@
+<!--
+    내용 : 일반 text
+    설정div
+       - textarea의 내용설정
+       - 확인 : 보기div로 전환 텍스트 형
+-->
+<div ng-show="item.makeShow">
+    <div class="well component">
+        <h4>{{item.title}} </h4>
+        <!--
+            문제 내용 입력 current_question.question_content
+        -->
+        <div class="text-left">
+            <textarea class="form-control" rows="3" ng-model="item.question_content" placeholder="テキスト入力"></textarea>
+        </div>
+        <div class="text-left">
+            <button class="btn btn-success btn-block" ng-click="endSetting()">確認</button>
+        </div>
+    </div>
+</div>
+<!--
+    보기div
+       - 마우스 over시 수정/삭제/복사 버튼 표시
+       - 수정 : 설정div로 전환
+       - 삭제 : 현제 문제 삭제
+       - 복사 : 설문지 하단에 내용 복사
+-->
+<div class="well component" ng-mouseleave="eventHandler($event)" ng-mouseenter="eventHandler($event)"
+     data-drag="true"
+     ng-show="item.viewShow">
+
+    <pre>{{item.question_content}}
+        <span class="pull-right label" ng-show="menuShow">
+            <button class="btn btn-default" ng-click="endSetting()">修正</button>
+            <button class="btn btn-default" ng-click="copyQuestion(item.index)" >コピー</button>
+            <button class="btn btn-danger" ng-click="removeQuestion(item.index)"> 削除</button>
+        </span>
+    </pre>
+</div>

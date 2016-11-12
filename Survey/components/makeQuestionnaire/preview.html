@@ -1,0 +1,13 @@
+<div class="ngdialog-message" id="previewDialog">
+    <div class="panel panel-default">
+        <div class="text-center">
+            <h3>{{current_questionnaire.name}}</h3>
+        </div>
+        <div ng-repeat="item in ngDialogData.questionnaire"
+             class="well"
+             response-template="item">
+        </div>
+    </div>
+</div>
+
+

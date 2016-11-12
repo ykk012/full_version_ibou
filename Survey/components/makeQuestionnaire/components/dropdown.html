@@ -1,0 +1,73 @@
+<!--
+    내용 : 드롭다운
+
+    설정div
+       - 문제/보기의 내용을 설정
+       - 중요표시 설정
+       - 보기 추가/삭제 버튼
+       - 확인 : 보기div로 전환
+-->
+<div id="make{{item.num}}" class="well component" ng-show="item.makeShow">
+    
+    <h3>{{item.title}} </h3>
+        <!--
+            문제 내용 입력 current_question.question_content
+        -->
+    <input class="form-control" ng-model="item.question_content" placeholder="入力">
+    <div class="form-group">
+        <h3>List</h3>
+        <!--
+            보기 내용 입력 current_question.example[index].exam.content
+            보기 인덱스 설정 current_question.example[index].exam.index
+        -->
+        <input ng-repeat="exam in item.example" class="form-control" ng-model="exam.content" placeholder="入力"/>
+    </div>
+
+    <div class="text-right">
+        <!--
+            보기 추가 버튼 / 보기 삭제 버튼
+        -->
+        <button class="btn btn-default" ng-click="addExample(item.example)">
+            <span class="glyphicon glyphicon-plus" aria-hidden="true"></span>
+        </button>
+        <button class="btn btn-danger" ng-click="removeExample(item.example)">
+            <span class="glyphicon glyphicon-minus" aria-hidden="true"></span>
+        </button>
+        <!--
+            문항의 상세 설정 : logic important
+        -->
+     
+        <span class="error" ng-show="errorMsgShow">2つ以上は入力してください</span>
+    </div>
+    <div class="text-left">
+        <button class="btn btn-success btn-block" ng-click="endSetting()">確認</button>
+    </div>
+</div>
+
+<!--
+    보기div
+       - 마우스 over시 수정/복사 버튼 표시
+       - 수정 : 설정div로 전환
+       - 삭제 : 현제 문제 삭제
+       - 복사 : 설문지 하단에 내용 복사
+-->
+
+<div id="view{{item.num}}"  class="well component" ng-mouseleave="eventHandler($event)" ng-mouseenter="eventHandler($event)"
+     data-drag="true"
+     ng-show="item.viewShow">
+    <h3> {{item.num + 1}}.&nbsp;{{item.question_content}}
+        <span class = "pull-right label" ng-show="menuShow">
+            <button class="btn btn-default" ng-click="endSetting()">修正</button>
+            <button class="btn btn-default" ng-click="copyQuestion(item.index)" >コピー</button>
+            <button class="btn btn-danger" ng-click="removeQuestion(item.index)"> 削除</button>
+        </span>
+    </h3>
+    <div class="form-group">
+        <select class="form-control" name="">
+            <option ng-repeat="exam in item.example track by $index"
+                    value="{{$index}}">
+                {{exam.content}}
+            </option>
+        </select>
+    </div>
+</div>

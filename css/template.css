@@ -1,0 +1,102 @@
+
+
+p{
+  font-size: 20px;
+}
+
+.navbar{
+  margin-bottom: 0;
+  height: 10vh
+}
+
+.navbar-brand, .navbar-nav li a{
+  line-height: 6vh;
+}
+
+.main{
+  margin: 0;
+  padding:0;
+}
+
+.outline{
+  height:90vh;
+}
+
+.title-upper{
+  height:50%;
+  background-color: white;
+}
+
+.title-upper-img{
+  align:middle;
+  height: 17vh;
+  margin-top:2vh;
+}
+
+.title-upper-h1{
+
+}
+
+.title-upper-form{
+  line-height: 10vh
+}
+
+.title-downer{
+  height: 50%;
+}
+
+.title-downer-row{
+  height:100%
+}
+.title-downer-row-col{
+  height:100%;
+}
+.title-downer-row-col-name{
+  height: 5vh;
+}
+
+/* workbench list css */
+
+.list-upper{
+}
+
+.list-line{
+  height:25vh;
+  margin-top:3vh;
+  background-color: grey;
+}
+
+.workbench-box{
+  border: 1px solid #ccc;
+  height:100%;
+}
+
+.action-button{
+  margin-top:2vh;
+}
+
+.nav-afterLogin{
+  display: none;
+}
+
+/* workbench view css */
+.svg-area{
+  margin-top: 2vh;
+  height:70vh;
+  border:1px solid black;
+  padding:0;
+}
+
+.bottom-button-menu{
+  margin-top: 2vh;
+  height:10vh;
+  background-color: #FFF;
+  border: 1px solid black;
+  padding: 5px;
+}
+
+.side-button-menu{
+  position:fixed;
+  right:0;
+  top:20vh;
+}

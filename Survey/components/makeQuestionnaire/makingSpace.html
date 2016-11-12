@@ -1,0 +1,115 @@
+
+
+<div ng-controller="makingSpaceCtrl">
+    <script type="text/ng-template" id="list.html">
+        <ul dnd-list="list" >
+            <ol ng-repeat="item in list"
+                remo="list"
+                dnd-draggable="item"
+                dnd-effect-allowed="move"
+                dnd-moved="list.splice($index, 1)"
+                dnd-selected="models.selected = item"
+                ng-class="{selected: models.selected === item}"
+                copy-fn="copyQuestion"
+                sub="subFalse"
+                rm-fn="removeQuestion"
+                set-index="setQuestionIndex"
+                component-template="item">
+            </ol>
+        </ul>
+    </script>
+ 
+                 
+    
+    <div class="simpleDemo">
+        
+     
+     
+        <!--노드메뉴시작-->
+ <div ng-controller="NodeMenuCtrl">
+        <div class="col-md-3">
+            <div class="panel panel-default">
+                    
+               <!--워크벤치 이름 받아옴-->
+            <div class="panel-heading"><h4 class="text-center">Workbenchのアイデア</h4>
+                <!--<div class="animate-repeat text-center" ng-repeat="item in workbench | filter:search_word">-->
+                <!--   <div ng-controller="AbnTestController" style="margin:20px">-->
+                <!--    <button class="btn btn-primary " ng-click="node_click(item)">-->
+                <!--        {{item.w_name}}-->
+                <!--        </button>-->
+                
+                <!--    </div>-->
+                <!--</div>-->
+            </div>
+                
+                  <div ng-controller="AbnTestController" style="margin:20px">
+                <div class="">
+                  <span ng-if="doing_async">...loading...</span>
+                  <abn-tree tree-data="my_data" tree-control="my_tree" on-select="my_tree_handler(branch)" expand-level="2" initial-selection="Granny Smith"></abn-tree>
+     
+                </div>
+                <input type="hidden" name="someData" ng-model="data" /> 
+                    <div class="panel-body" >
+                
+                          <!--for 문처럼  배열 반복시킴-->
+                  
+  
+                        <div ng-repeat="item in keyword | filter:search_word">
+                                <button  ng-class="button(item)" >
+                                 {{item.name}}test
+                                </button>
+                          </div>
+                    </div>
+                </div>
+        </div>
+        </div>  
+<!-- 노드메뉴 끝-->
+        <!--
+            questionnarie
+        -->
+        <div id="printThisElement">
+            <div class="col-md-6" style="height: 1000px;">
+                <div id="preview" class="panel panel-default">
+                    <div ng-repeat="(zone, list) in models.questionnarie">
+                        <div class="panel-body">
+                            <!-- The dropzone also uses the list template -->
+                            <div ng-include="'list.html'"></div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+                <div class="col-md-3">
+            <div class="panel panel-default">
+                <div class="panel-heading text-center"><h4>アンケート項目を選択</h4></div>
+                <ul>
+                    <div class="panel-body" >
+                        <div
+                                ng-repeat="item in models.templates"
+                                dnd-draggable="item"
+                                dnd-effect-allowed="copy"
+                                dnd-copied="item.id = item.id + 1">
+                            <button type="button" class="btn btn-default btn-lg btn-block" disabled="disabled">{{item.type}}</button>
+                        </div>
+                    </div>
+                </ul>
+                <div class="panel-footer text-center">
+                    <button class="btn btn-primary btn-lg" ng-click="openPreview()">
+                       プレビュー
+                    </button>
+
+                    <!--<button class="btn btn-primary btn-lg" ng-print print-element-id="printThis"><i class="fa fa-print"></i> Print</button>-->
+                    <button class="btn btn-primary btn-lg" ng-click="addNewQuestionnaire()">
+                        完了
+                    </button>
+
+                </div>
+            </div>
+        </div>
+
+
+   </div>
+   
+      
+</div>
+

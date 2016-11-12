@@ -1,0 +1,108 @@
+<div class="col-md-12 result-main" ng-controller="resultCtrl">
+    <div class="col-md-12 text-center">
+
+        <div class="text-left">
+            <h1>参加情報</h1>
+        </div>
+    </div>
+    <!--<div class="col-md-12">-->
+        <!--<div class="panel shadow-input">-->
+            <!--<div class="panel-body text-center">-->
+
+                <!--<div class="panel col-xs-7">-->
+                    <!--<div class="panel-body" style="height: 300px">-->
+                        <!--<canvas id="date_line" class="chart chart-line" data="date_data"-->
+                                <!--labels="date_labels" legend="true" series="date_series"-->
+                                <!--click="onClick">-->
+                        <!--</canvas>-->
+                    <!--</div>-->
+                <!--</div>-->
+
+            <!--</div>-->
+        <!--</div>-->
+    <!--</div>-->
+
+    <!--<div class="col-md-12">-->
+    <!--    <p>응답비율</p>-->
+    <!--</div>-->
+    <div class="col-md-3"  id="gender-chart">
+         <div class="panel shadow-input">
+            <div class="panel-body">
+                 <img src="images/resurt_join.jpg" style="height: 175px;margin-left: auto; margin-right: auto; display: block;">
+           
+            </div>
+            <div class="panel-footer text-right">
+                 <h3>{{resultData.surveyInfo.respondent}}人が参加</h3>
+            </div>
+        </div>
+    
+        <div class="panel-body" style="">
+           
+        </div>
+    </div>
+    
+    <div class="col-md-3" id="gender-chart">
+        <div class="panel shadow-input">
+            <div class="panel-body">
+                <h3 class=""><span class="glyphicon glyphicon-user"></span>&nbsp;Gender</h3>
+                <canvas id="gender_doughnut" class="chart chart-doughnut chart-xs" data="gender_data" labels="gender_labels" legend="false"></canvas>
+            </div>
+            <div class="panel-footer text-right">
+                <h3>男女比率</h3>
+            </div>
+        </div>
+    </div>
+    <div class="col-md-3" id="area-chart">
+        <div class="panel shadow-input">
+            <div class="panel-body">
+                <h3 class=""><span class="glyphicon glyphicon-plane"></span>&nbsp;occupation</h3>
+                <canvas id="area_doughnut" class="chart chart-doughnut chart-xs" data="area_data" labels="area_labels" legend="false"></canvas>
+            </div>
+            <div class="panel-footer text-right">
+                <h3>職種</h3>
+            </div>
+        </div>
+    </div>
+    <div class="col-md-3" id="age-chart">
+        <div class="panel shadow-input">
+            <div class="panel-body">
+                <h3 class=""><span class="glyphicon glyphicon-user"></span>&nbsp;Age</h3>
+                <canvas id="age_doughnut" class="chart chart-doughnut chart-xs" data="age_data" labels="age_labels" legend="false"></canvas>
+            </div>
+            <div class="panel-footer text-right">
+                <h3>平均年齢</h3>
+            </div>
+        </div>
+    </div>
+
+    <div class="col-md-12">
+        <p>問題別の分析</p>
+    </div>
+    <div class="col-md-12" >
+        <div class="panel shadow-input">
+            <div class="panel-body">
+                <div class="col-md-12">
+                    <h2>{{q_selected.num+1}}.&nbsp;{{q_selected.question_content}}</h2>
+                    <select class="form-control" ng-model="q_selected" ng-options="item.question_content for item in surveyreport" ng-change="setQuestion(q_selected)">
+                    </select>
+                </div>
+             
+                <div class="row">
+                    <div class="col-xs-6 col-md-6 col-lg-6 vcenter" style="border-right: 1px solid; margin-left: 20px">
+                        <div google-chart chart="chart" style="{{cssStyle}}" on-ready="chartReady()"></div>
+                    </div>
+                    <div class="col-xs-6 col-md-6 col-lg-5 vcenter" style="margin-left: 35px">
+                        <div ng-repeat="item in surveyreport">
+                            <div ng-if="item.qid == q_selected.qid">
+                                <div response-template="item"></div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div class="panel-footer">
+
+            </div>
+        </div>
+    </div>
+</div>

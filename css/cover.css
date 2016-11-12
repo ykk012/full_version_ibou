@@ -1,0 +1,47 @@
+.text-grid{
+    padding-top:150px;
+}
+
+#section0{
+	background-image: url("/img/cover/bg1.jpg");
+	background-size: 100% 100%;
+}
+
+#section1{
+    background-image: url("/img/cover/bg3.jpg");
+    background-size: 100% 100%;
+}
+#icon1{
+    padding-left:20px;
+}
+#textArea{
+    margin-bottom:100px;
+}
+.text-center{
+    padding-left:10px;
+}
+.section1-rows{
+    padding-top:50px;
+}
+#icon2,
+#icon3,
+#icon4{
+    height:100px;
+}
+#icon2{
+    background:url("/img/cover/icon2.png");
+    background-size:100% 100%;
+}
+#icon3{
+    background:url("/img/cover/icon3.png");
+    background-size:100% 100%;
+}
+#icon4{
+    background:url("/img/cover/icon4.png");
+    background-size:100% 100%;
+}
+.btn{
+    margin-left:30px;
+    padding-left:50px;
+    padding-right:50px;
+}

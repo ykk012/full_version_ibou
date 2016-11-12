@@ -1,0 +1,12 @@
+<!--
+    내용 : 날짜/시간 정보
+-->
+<div id="view{{item.num}}" class="well component" ng-show="item.viewShow">
+
+    <h3> {{item.num + 1}}.&nbsp;{{item.question_content}}</h3>
+    <div class="form-inline">
+        <div class="form-group">
+            <input type="date" class="form-control" ng-model="item.answer"/>
+        </div>
+    </div>
+</div>
